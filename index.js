@@ -24,17 +24,24 @@ const client = new MongoClient(uri, {
 
 let listingsCollection, ordersCollection;
 
-async function run() {
-  try {
+async function connectDB() {
+  if (!listingsCollection || !ordersCollection) {
+    await client.connect();
     const db = client.db("pawmart");
     listingsCollection = db.collection("listings");
     ordersCollection = db.collection("orders");
     console.log("Connected to MongoDB");
-  } catch (err) {
-    console.error(err);
   }
 }
-connectDB();
+
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    res.status(500).send({ message: "Database connection failed", error });
+  }
+});
 
 app.get("/", (req, res) => res.send("PawMart Server is working"));
 // get recent listing
@@ -151,8 +158,6 @@ app.delete("/order/:id", async (req, res) => {
 });
 
 console.log("Connected to MongoDB");
-
-run().catch(console.dir);
 
 app.get("/", (req, res) => {
   res.send("PawMart Server is working");
