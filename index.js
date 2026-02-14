@@ -6,7 +6,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 app.use(
   cors({
-    origin: ["http://localhost:5173", "*"],
+    origin: [
+      "https://assignment-10-server-woad-six.vercel.app/",
+      "https://assignment-10-server-woad-six.vercel.app",
+      "",
+      "*",
+    ],
     credentials: true,
   }),
 );
