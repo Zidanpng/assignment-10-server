@@ -9,7 +9,7 @@ app.use(
     origin: [
       "https://assignment-10-server-woad-six.vercel.app/",
       "https://assignment-10-server-woad-six.vercel.app",
-      "",
+      "https://paw-mart.zidanbot3286.workers.dev/",
       "*",
     ],
     credentials: true,
