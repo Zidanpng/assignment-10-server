@@ -7,10 +7,8 @@ const port = process.env.PORT || 5000;
 app.use(
   cors({
     origin: [
-      "https://assignment-10-server-woad-six.vercel.app/",
       "https://assignment-10-server-woad-six.vercel.app",
-      "https://paw-mart.zidanbot3286.workers.dev/",
-      "*",
+      "https://paw-mart.zidanbot3286.workers.dev",
     ],
     credentials: true,
   }),
